@@ -93,3 +93,18 @@
   499  kubectl create rolebinding default-view   --clusterrole=view   --serviceaccount=my-namespace:default   --namespace=my-namespace
   500  kubectl get pods
   501  kubectl get services
+ kubectl auth reconcile -f my-rbac-rules.yaml --dry-run=client
+  505  kubectl auth reconcile -f my-rbac-rules.yaml
+  506  kubectl auth reconcile -f my-rbac-rules.yaml --remove-extra-subjects --remove-extra-permissions
+  507  kubectl create rolebinding my-sa-view   --clusterrole=view   --serviceaccount=my-namespace:my-sa   --namespace=my-namespace
+  508  kubectl create rolebinding default-view   --clusterrole=view   --serviceaccount=my-namespace:default   --namespace=my-namespace
+  509  kubectl create rolebinding serviceaccounts-view   --clusterrole=view   --group=system:serviceaccounts:my-namespace   --namespace=my-namespace
+  510  kubectl create clusterrolebinding serviceaccounts-view   --clusterrole=view  --group=system:serviceaccounts
+  511  kubectl create clusterrolebinding serviceaccounts-cluster-admin   --clusterrole=cluster-admin   --group=system:serviceaccounts
+  512  vi my-rabc-rules.yaml
+  513  kubectl get svc
+  514  kubectl describe pod my-release-nginx-ingress
+  515  kubectl get namespaces
+  516  kubectl get pods -n default
+  517  kubectl create clusterrolebinding flux-nginx-cluster-admin --clusterrole=cluster-admin --serviceaccount=nginx:flux-applier
+
