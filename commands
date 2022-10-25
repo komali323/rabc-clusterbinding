@@ -1,0 +1,95 @@
+ vi namespace.yaml
+  408  kubectl apply -f namespace.yaml
+  409  vi helmrepository-bitnami.yaml
+  410  kubectl apply -f helmrepository-bitnami.yaml
+  411  vi kustomization-nginx-ingress-controller.yaml
+  412  kubectl apply -f kustomization-nginx-ingress-controller.yaml
+  413  kubectl create namespace agones-system
+  414  kubectl apply -f https://raw.githubusercontent.com/googleforgames/agones/release-1.26.0/install/yaml/install.yaml
+  415  helm pull --untar https://agones.dev/chart/stable/agones-1.26.0.tgz && cd agones && helm template agones-manual --namespace agones-system  .   --set agones.controller.generateTLS=false   --set agones.allocator.generateTLS=false   --set agones.allocator.generateClientTLS=false   --set agones.crds.cleanupOnDelete=false   --set agones.featureGates="PlayerTracking=true"   > install-custom.yaml
+  416  kubectl apply -f helmrepository-bitnami.yaml
+  417  ls
+  418  vi helmrepository-bitnami.yaml
+  419  kubectl apply -f helmrepository-bitnami.yaml
+  420  vi kustomization-nginx-ingress-controller.yaml
+  421  kubectl apply -f kustomization-nginx-ingress-controller.yaml
+  422  vi helmrelease-nginx-ingress-controller.yaml
+  423  kubectl apply -f helmrelease-nginx-ingress-controller.yaml
+  424  clear
+  425  git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v2.4.1
+  426  cd kubernetes-ingress/deployments/helm-chart
+  427  helm repo add nginx-stable https://helm.nginx.com/stable
+  428  helm repo update
+  429  helm install my-release nginx-stable/nginx-ingress
+  430  helm install my-release nginx-stable/nginx-ingress --set controller.image.repository=myregistry.example.com/nginx-plus-ingress --set controller.nginxplus=true
+  431  helm install my-release .
+  432  helm install my-release -f values-plus.yaml .
+  433  kubectl apply -f crds/
+  434  helm upgrade my-release .
+  435  helm upgrade my-release nginx-stable/nginx-ingress
+  436  kubectl apply -f helmrepository-bitnami.yaml
+  437  vi helmrepository-bitnami.yaml
+  438  kubectl apply -f helmrepository-bitnami.yaml
+  439  demo@shredder:~$ kubectl get pods -n nginx-ingress-controller
+  440  NAME                                                        READY   STATUS    RESTARTS   AGE
+  441  nginx-ingress-controller-5b849b4fbd-svbxk                   1/1     Running   0          24h
+  442  nginx-ingress-controller-5b849b4fbd-xt7vc                   1/1     Running   0          24h
+  443  nginx-ingress-controller-default-backend-867d86fb8f-t27j9   1/1     Running   0          24h
+  444  demo@shredder:~$
+  445  kubectl get pods -n nginx-ingress-controller
+  446  kubectl get pods
+  447  kubectl get services
+  448  kubectl get ingress -A
+  449  kubectl get ingress
+  450  kubectl create clusterrolebinding flux-nginx-cluster-admin --clusterrole=cluster-admin --serviceaccount=nginx:flux-applier
+  451  kube-apiserver --authorization-mode=Example,RBAC --other-options --more-options
+  452  vi pods123.yaml
+  453  kubectl apply -f pods123.yaml
+  454  vi clusterrole.yaml
+  455  kubectl apply -f cluaterrole.yaml
+  456  kubectl apply -f clusterrole.yaml
+  457  vi rolebinding.yaml
+  458  kubectl apply -f rolebinding.yaml
+  459  vi rolesecrets.yaml
+  460  kubectl apply -f rolesecrets.yaml
+  461  vi rolesecrets.yaml
+  462  kubectl create namespace development
+  463  kubectl apply -f rolesecrets.yaml
+  464  vi clusterrolebinding.yaml
+  465  kubectl apply -f clusterrolebinding.yaml
+  466  vi podrabc.yaml
+  467  kubectl apply -f podrabc.yaml
+  468  vi configmap.yaml
+  469  vi my-config.yaml
+  470  kubectl apply -f my-config.yaml
+  471  vi subjects.yaml
+  472  kubectl apply -f subjects.yaml
+  473  kubectl get clusterroles system:discovery -o yaml
+  474  vi role-generator.yaml
+  475  kubectl apply -f role-generator.yaml
+  476  kubectal create namespace user-1-namespace
+  477  kubectl create namespace user-1-namespace
+  478  kubectl apply -f role-generator.yaml
+  479  kubectl create role pod-reader --verb=get --verb=list --verb=watch --resource=pods
+  480  kubectl create role pod-reader --verb=get --resource=pods --resource-name=readablepod --resource-name=anotherpod
+  481  kubectl create role foo --verb=get,list,watch --resource=replicasets.apps
+  482  kubectl create role foo --verb=get,list,watch --resource=pods,pods/status
+  483  kubectl create role my-component-lease-holder --verb=get,list,watch,update --resource=lease --resource-name=my-component
+  484  kubectl create clusterrole pod-reader --verb=get,list,watch --resource=pods
+  485  kubectl create clusterrole pod-reader --verb=get --resource=pods --resource-name=readablepod --resource-name=anotherpod
+  486  kubectl create clusterrole foo --verb=get,list,watch --resource=replicasets.apps
+  487  kubectl create clusterrole foo --verb=get,list,watch --resource=pods,pods/status
+  488  kubectl create rolebinding bob-admin-binding --clusterrole=admin --user=bob --namespace=acme
+  489  kubectl create namespace acme
+  490  kubectl create rolebinding bob-admin-binding --clusterrole=admin --user=bob --namespace=acme
+  491  kubectl create rolebinding myapp-view-binding --clusterrole=view --serviceaccount=acme:myapp --namespace=acme
+  492  kubectl create rolebinding myappnamespace-myapp-view-binding --clusterrole=view --serviceaccount=myappnamespace:myapp --namespace=acme
+  493  kubectl create clusterrolebinding root-cluster-admin-binding --clusterrole=cluster-admin --user=root
+  494  kubectl create clusterrolebinding kube-proxy-binding --clusterrole=system:node-proxier --user=system:kube-proxy
+  495  kubectl create clusterrolebinding myapp-view-binding --clusterrole=view --serviceaccount=acme:myapp
+  496  kubectl auth reconcile -f my-rbac-rules.yaml --dry-run=client
+  497  kubectl create rolebinding default-view   --clusterrole=view   --serviceaccount=my-namespace:default   --namespace=my-namespace
+  498  kubectl create namespace my-namespace
+  499  kubectl create rolebinding default-view   --clusterrole=view   --serviceaccount=my-namespace:default   --namespace=my-namespace
+  500  kubectl get pods
+  501  kubectl get services
